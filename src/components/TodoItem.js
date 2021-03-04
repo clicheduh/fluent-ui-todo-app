@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { connect } from 'react-redux';
 import {
 	Stack,
 	Label,
@@ -65,4 +66,13 @@ const TodoItem = (props) => {
 	);
 };
 
-export default TodoItem;
+const mapStateToProps = (state, ownProps) => {
+	// var idToShow = ownProps.match.params.post_id;
+	return {
+		todos: state.todos.find((todo) => {
+			return idToShow === todo.id;
+		})
+	};
+};
+
+export default connect(mapStateToProps)(TodoItem);
